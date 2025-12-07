@@ -5,8 +5,8 @@ use std::time::Duration;
 use bytes::{Bytes};
 use tracing::{debug, info, trace, warn};
 
-use zkrust_core::{Command, Packet, Session};
-use zkrust_transport::{TcpTransport, Transport};
+use zkrust_core::{make_commkey, Command, Packet, Session};
+use zkrust_transport::{TcpTransport, UdpTransport, Transport};
 use zkrust_types::DeviceInfo;
 
 use crate::error::{Error, Result};
@@ -38,21 +38,41 @@ pub struct Device {
     transport: Box<dyn Transport>,
     session: Session,
     timeout: Duration,
+    password: u32, // CommKey password (default: 0)
 }
 
 impl Device {
     /// Create a new device instance (TCP transport)
     pub fn new(ip: impl Into<String>, port: u16) -> Self {
         Self {
-            transport: Box::new(TcpTransport::new(ip, port)),
+            transport: Box::new(TcpTransport::new(ip, port).with_tcp_wrapper(false)),
             session: Session::new(),
             timeout: Duration::from_secs(5),
+            password: 0, // Default CommKey password
         }
     }
-    
+
+    /// Create a new device instance using UDP transport (recommended)
+    ///
+    /// Most ZKTeco devices use UDP protocol. This is the recommended method.
+    pub fn new_udp(ip: impl Into<String>, port: u16) -> Self {
+        Self {
+            transport: Box::new(UdpTransport::new(ip, port)),
+            session: Session::new(),
+            timeout: Duration::from_secs(5),
+            password: 0, // Default CommKey password
+        }
+    }
+
     /// Set command timeout
     pub fn with_timeout(mut self, timeout: Duration) -> Self {
         self.timeout = timeout;
+        self
+    }
+
+    /// Set CommKey password (default: 0)
+    pub fn with_password(mut self, password: u32) -> Self {
+        self.password = password;
         self
     }
     
@@ -87,20 +107,63 @@ impl Device {
                 // Success - initialize session
                 let session_id = response.session_id;
                 self.session.initialize(session_id)?;
-                
+
                 info!(
                     "Connected successfully (session_id={})",
                     session_id
                 );
-                
+
                 Ok(())
             }
             Command::AckUnauth => {
                 // Device requires authentication
-                warn!("Device requires authentication (CommKey set)");
-                
-                // For now, return error - we'll add auth in Phase 2
-                Err(Error::Core(zkrust_core::Error::AuthenticationRequired))
+                info!("Device requires authentication, sending password...");
+
+                // Use the session_id from the AckUnauth response
+                let session_id = response.session_id;
+
+                // Generate authentication key using ZKTeco's proprietary algorithm
+                let auth_key = make_commkey(self.password, session_id, 50);
+
+                debug!(
+                    "Auth key: {:02X?} (password={}, session_id={})",
+                    auth_key, self.password, session_id
+                );
+
+                // Send CMD_AUTH with scrambled password
+                let auth_packet = Packet::with_payload(
+                    Command::Auth,
+                    session_id,
+                    0,
+                    auth_key,
+                );
+
+                self.send_packet(&auth_packet).await?;
+
+                // Receive authentication response
+                let auth_response = self.receive_packet().await?;
+
+                match auth_response.command {
+                    Command::AckOk => {
+                        // Authentication successful - initialize session
+                        let session_id = auth_response.session_id;
+                        self.session.initialize(session_id)?;
+
+                        info!(
+                            "Authenticated successfully (session_id={})",
+                            session_id
+                        );
+
+                        Ok(())
+                    }
+                    Command::AckError => {
+                        Err(Error::InvalidResponse("Authentication failed - incorrect password".into()))
+                    }
+                    _ => Err(Error::InvalidResponse(format!(
+                        "Unexpected auth response: {}",
+                        auth_response.command
+                    ))),
+                }
             }
             Command::AckError => {
                 Err(Error::InvalidResponse("Device returned error".into()))

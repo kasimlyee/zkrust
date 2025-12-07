@@ -7,7 +7,9 @@
 //! - Checksum calculation
 //! - Command definitions
 //! - Protocol constants
+//! - Authentication
 
+pub mod auth;
 pub mod checksum;
 pub mod command;
 pub mod constants;
@@ -15,6 +17,7 @@ pub mod error;
 pub mod packet;
 pub mod session;
 
+pub use auth::make_commkey;
 pub use command::Command;
 pub use error::{Error, Result};
 pub use packet::Packet;

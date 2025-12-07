@@ -3,10 +3,12 @@
 //! Provides TCP/UDP communication with devices.
 
 pub mod tcp;
+pub mod udp;
 pub mod error;
 
 pub use error::{Error, Result};
 pub use tcp::TcpTransport;
+pub use udp::UdpTransport;
 
 use async_trait::async_trait;
 use bytes::BytesMut;
