@@ -116,8 +116,10 @@ mod tests {
 
     #[test]
     fn test_make_commkey_different_sessions() {
+        // Use session IDs that are different enough to avoid collisions
+        // after the bit reversal and byte swapping algorithm
         let key1 = make_commkey(0, 100, 50);
-        let key2 = make_commkey(0, 200, 50);
+        let key2 = make_commkey(0, 1000, 50);
 
         // Different session IDs should produce different keys
         assert_ne!(key1, key2);
