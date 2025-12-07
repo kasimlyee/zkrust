@@ -1,14 +1,34 @@
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
-}
+//! Transport layer for ZKTeco protocol
+//!
+//! Provides TCP/UDP communication with devices.
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+pub mod tcp;
+pub mod error;
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
+pub use error::{Error, Result};
+pub use tcp::TcpTransport;
+
+use async_trait::async_trait;
+use bytes::BytesMut;
+
+/// Transport trait for different communication methods
+#[async_trait]
+pub trait Transport: Send + Sync {
+    /// Connect to device
+    async fn connect(&mut self) -> Result<()>;
+    
+    /// Disconnect from device
+    async fn disconnect(&mut self) -> Result<()>;
+    
+    /// Check if connected
+    fn is_connected(&self) -> bool;
+    
+    /// Send raw bytes
+    async fn send(&mut self, data: &[u8]) -> Result<()>;
+    
+    /// Receive raw bytes (with timeout)
+    async fn receive(&mut self, timeout_secs: u64) -> Result<BytesMut>;
+    
+    /// Get remote address
+    fn remote_addr(&self) -> String;
 }

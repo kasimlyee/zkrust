@@ -1,9 +1,20 @@
 [package]
 name = "zkrust-core"
-version = "0.1.0"
-edition = "2024"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
 
 [dependencies]
-bytes.workspace = true
-pretty_assertions.workspace = true
-tracing.workspace = true
+bytes = { workspace = true }
+byteorder = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+hex = { workspace = true }
+parking_lot = "0.12.5"
+
+[dev-dependencies]
+pretty_assertions = { workspace = true }
+proptest = { workspace = true }

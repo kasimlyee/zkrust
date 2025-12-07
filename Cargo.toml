@@ -1,7 +1,6 @@
 [workspace]
-members = [
+members = ["zkrust",
     "zkrust-core",
-    "zkrust-protocol", 
     "zkrust-transport",
     "zkrust-types",
 ]

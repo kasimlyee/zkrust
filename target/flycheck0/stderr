@@ -1,60 +1,12 @@
-   0.025801800s  INFO prepare_target{force=false package_id=zkrust-core v0.1.0 (F:\Kasim Lyee\Projects\zkrust\zkrust-core) target="zkrust_core"}: cargo::core::compiler::fingerprint: fingerprint error for zkrust-core v0.1.0 (F:\Kasim Lyee\Projects\zkrust\zkrust-core)/Check { test: false }/TargetInner { name_inferred: true, ..: lib_target("zkrust_core", ["lib"], "F:\\Kasim Lyee\\Projects\\zkrust\\zkrust-core\\src\\lib.rs", Edition2024) }
-   0.025851200s  INFO prepare_target{force=false package_id=zkrust-core v0.1.0 (F:\Kasim Lyee\Projects\zkrust\zkrust-core) target="zkrust_core"}: cargo::core::compiler::fingerprint:     err: failed to read `F:\Kasim Lyee\Projects\zkrust\target\debug\.fingerprint\zkrust-core-48a3715e4e1f40af\lib-zkrust_core`
-
-Caused by:
-    The system cannot find the file specified. (os error 2)
-
-Stack backtrace:
-   0: git_midx_writer_dump
-   1: git_midx_writer_dump
-   2: git_midx_writer_dump
-   3: git_midx_writer_dump
-   4: git_filter_source_repo
-   5: git_filter_source_repo
-   6: git_filter_source_repo
-   7: git_filter_source_repo
-   8: git_filter_source_repo
-   9: git_filter_source_repo
-  10: git_filter_source_repo
-  11: git_libgit2_prerelease
-  12: <unknown>
-  13: <unknown>
-  14: <unknown>
-  15: <unknown>
-  16: git_midx_writer_dump
-  17: git_filter_source_repo
-  18: git_midx_writer_dump
-  19: BaseThreadInitThunk
-  20: RtlUserThreadStart
-   0.035397500s  INFO prepare_target{force=false package_id=zkrust-core v0.1.0 (F:\Kasim Lyee\Projects\zkrust\zkrust-core) target="zkrust_core"}: cargo::core::compiler::fingerprint: fingerprint error for zkrust-core v0.1.0 (F:\Kasim Lyee\Projects\zkrust\zkrust-core)/Check { test: true }/TargetInner { name_inferred: true, ..: lib_target("zkrust_core", ["lib"], "F:\\Kasim Lyee\\Projects\\zkrust\\zkrust-core\\src\\lib.rs", Edition2024) }
-   0.035423500s  INFO prepare_target{force=false package_id=zkrust-core v0.1.0 (F:\Kasim Lyee\Projects\zkrust\zkrust-core) target="zkrust_core"}: cargo::core::compiler::fingerprint:     err: failed to read `F:\Kasim Lyee\Projects\zkrust\target\debug\.fingerprint\zkrust-core-188a4641e21bdf79\test-lib-zkrust_core`
-
-Caused by:
-    The system cannot find the file specified. (os error 2)
-
-Stack backtrace:
-   0: git_midx_writer_dump
-   1: git_midx_writer_dump
-   2: git_midx_writer_dump
-   3: git_midx_writer_dump
-   4: git_filter_source_repo
-   5: git_filter_source_repo
-   6: git_filter_source_repo
-   7: git_filter_source_repo
-   8: git_filter_source_repo
-   9: git_filter_source_repo
-  10: git_filter_source_repo
-  11: git_libgit2_prerelease
-  12: <unknown>
-  13: <unknown>
-  14: <unknown>
-  15: <unknown>
-  16: git_midx_writer_dump
-  17: git_filter_source_repo
-  18: git_midx_writer_dump
-  19: BaseThreadInitThunk
-  20: RtlUserThreadStart
-    Checking zkrust-core v0.1.0 (F:\Kasim Lyee\Projects\zkrust\zkrust-core)
-error: could not compile `zkrust-core` (lib) due to 3 previous errors
-warning: build failed, waiting for other jobs to finish...
-error: could not compile `zkrust-core` (lib test) due to 3 previous errors
+   0.075550900s  INFO prepare_target{force=false package_id=zkrust v0.1.0 (F:\Kasim Lyee\Projects\zkrust\zkrust) target="zkrust"}: cargo::core::compiler::fingerprint: stale: changed "F:\\Kasim Lyee\\Projects\\zkrust\\zkrust\\src\\device.rs"
+   0.075582700s  INFO prepare_target{force=false package_id=zkrust v0.1.0 (F:\Kasim Lyee\Projects\zkrust\zkrust) target="zkrust"}: cargo::core::compiler::fingerprint:           (vs) "F:\\Kasim Lyee\\Projects\\zkrust\\target\\debug\\.fingerprint\\zkrust-d91d0a93a231f320\\dep-lib-zkrust"
+   0.075589800s  INFO prepare_target{force=false package_id=zkrust v0.1.0 (F:\Kasim Lyee\Projects\zkrust\zkrust) target="zkrust"}: cargo::core::compiler::fingerprint:                FileTime { seconds: 13409579491, nanos: 959111200 } < FileTime { seconds: 13409579503, nanos: 969119000 }
+   0.075718400s  INFO prepare_target{force=false package_id=zkrust v0.1.0 (F:\Kasim Lyee\Projects\zkrust\zkrust) target="zkrust"}: cargo::core::compiler::fingerprint: fingerprint dirty for zkrust v0.1.0 (F:\Kasim Lyee\Projects\zkrust\zkrust)/Check { test: false }/TargetInner { name_inferred: true, ..: lib_target("zkrust", ["lib"], "F:\\Kasim Lyee\\Projects\\zkrust\\zkrust\\src\\lib.rs", Edition2021) }
+   0.075746400s  INFO prepare_target{force=false package_id=zkrust v0.1.0 (F:\Kasim Lyee\Projects\zkrust\zkrust) target="zkrust"}: cargo::core::compiler::fingerprint:     dirty: FsStatusOutdated(StaleItem(ChangedFile { reference: "F:\\Kasim Lyee\\Projects\\zkrust\\target\\debug\\.fingerprint\\zkrust-d91d0a93a231f320\\dep-lib-zkrust", reference_mtime: FileTime { seconds: 13409579491, nanos: 959111200 }, stale: "F:\\Kasim Lyee\\Projects\\zkrust\\zkrust\\src\\device.rs", stale_mtime: FileTime { seconds: 13409579503, nanos: 969119000 } }))
+   0.083375800s  INFO prepare_target{force=false package_id=zkrust v0.1.0 (F:\Kasim Lyee\Projects\zkrust\zkrust) target="zkrust"}: cargo::core::compiler::fingerprint: stale: changed "F:\\Kasim Lyee\\Projects\\zkrust\\zkrust\\src\\device.rs"
+   0.083392200s  INFO prepare_target{force=false package_id=zkrust v0.1.0 (F:\Kasim Lyee\Projects\zkrust\zkrust) target="zkrust"}: cargo::core::compiler::fingerprint:           (vs) "F:\\Kasim Lyee\\Projects\\zkrust\\target\\debug\\.fingerprint\\zkrust-a89111fc84ffc1a3\\dep-test-lib-zkrust"
+   0.083398200s  INFO prepare_target{force=false package_id=zkrust v0.1.0 (F:\Kasim Lyee\Projects\zkrust\zkrust) target="zkrust"}: cargo::core::compiler::fingerprint:                FileTime { seconds: 13409579491, nanos: 959617300 } < FileTime { seconds: 13409579503, nanos: 969119000 }
+   0.083510700s  INFO prepare_target{force=false package_id=zkrust v0.1.0 (F:\Kasim Lyee\Projects\zkrust\zkrust) target="zkrust"}: cargo::core::compiler::fingerprint: fingerprint dirty for zkrust v0.1.0 (F:\Kasim Lyee\Projects\zkrust\zkrust)/Check { test: true }/TargetInner { name_inferred: true, ..: lib_target("zkrust", ["lib"], "F:\\Kasim Lyee\\Projects\\zkrust\\zkrust\\src\\lib.rs", Edition2021) }
+   0.083527200s  INFO prepare_target{force=false package_id=zkrust v0.1.0 (F:\Kasim Lyee\Projects\zkrust\zkrust) target="zkrust"}: cargo::core::compiler::fingerprint:     dirty: FsStatusOutdated(StaleItem(ChangedFile { reference: "F:\\Kasim Lyee\\Projects\\zkrust\\target\\debug\\.fingerprint\\zkrust-a89111fc84ffc1a3\\dep-test-lib-zkrust", reference_mtime: FileTime { seconds: 13409579491, nanos: 959617300 }, stale: "F:\\Kasim Lyee\\Projects\\zkrust\\zkrust\\src\\device.rs", stale_mtime: FileTime { seconds: 13409579503, nanos: 969119000 } }))
+    Checking zkrust v0.1.0 (F:\Kasim Lyee\Projects\zkrust\zkrust)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.27s

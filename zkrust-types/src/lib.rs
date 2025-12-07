@@ -1,14 +1,7 @@
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
-}
+//! Type definitions for zkrust
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+pub mod device_info;
+pub mod error;
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
-}
+pub use device_info::DeviceInfo;
+pub use error::{Error, Result};
