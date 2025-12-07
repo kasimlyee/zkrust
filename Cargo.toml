@@ -1,6 +1,61 @@
-[package]
-name = "zkrust"
-version = "0.1.0"
-edition = "2024"
+[workspace]
+members = [
+    "zkrust-core",
+    "zkrust-protocol", 
+    "zkrust-transport",
+    "zkrust-types",
+]
+resolver = "2"
 
-[dependencies]
+[workspace.package]
+version = "0.1.0"
+authors = ["Kasim Lyee (lyee@codewithlyee.com)"]
+edition = "2021"
+rust-version = "1.75"
+license = "MIT"
+repository = "https://github.com/kasimlyee/zkrust"
+keywords = ["zkteco", "biometric", "attendance", "fingerprint"]
+categories = ["hardware-support", "network-programming"]
+
+[workspace.dependencies]
+# Async runtime
+tokio = { version = "1.35", features = ["net", "io-util", "time", "rt", "macros"] }
+async-trait = "0.1.77"
+
+# Serialization & bytes
+bytes = "1.5"
+byteorder = "1.5"
+
+# Error handling
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# Time handling
+chrono = "0.4"
+
+# Utilities
+bitflags = "2.4"
+hex = "0.4"
+
+# Development dependencies
+mockall = "0.12"
+proptest = "1.4"
+criterion = "0.5"
+pretty_assertions = "1.4"
+
+[profile.dev]
+opt-level = 0
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+panic = "abort"
+strip = true
+
+[profile.bench]
+inherits = "release"
