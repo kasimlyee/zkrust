@@ -26,7 +26,7 @@ What should have happened instead?
 
 ---
 
-## 📸 Screenshots / Logs
+## Screenshots / Logs
 If applicable, add screenshots, videos, or error logs that show the problem.
 
 ---
@@ -40,7 +40,7 @@ If applicable, add screenshots, videos, or error logs that show the problem.
 
 ---
 
-## 📱 Smartphone Information (if applicable)
+## Smartphone Information (if applicable)
 | Field       | Value |
 |-------------|-------|
 | Device      | e.g., Samsung A32 |
