@@ -15,6 +15,9 @@ license = "MIT"
 repository = "https://github.com/kasimlyee/zkrust"
 keywords = ["zkteco", "biometric", "attendance", "fingerprint"]
 categories = ["hardware-support", "network-programming"]
+description = "Unofficial library of zkteco fingerprint attendance machines"
+
+
 
 [workspace.dependencies]
 # Async runtime

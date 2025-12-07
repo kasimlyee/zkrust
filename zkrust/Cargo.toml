@@ -8,7 +8,7 @@ license.workspace = true
 repository.workspace = true
 keywords.workspace = true
 categories.workspace = true
-description = "Unofficial library of zkteco fingerprint attendance machines"
+description.workspace = true
 
 [dependencies]
 zkrust-core = { path = "../zkrust-core" }
