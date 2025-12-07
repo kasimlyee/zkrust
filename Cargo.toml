@@ -18,7 +18,7 @@ categories = ["hardware-support", "network-programming"]
 
 [workspace.dependencies]
 # Async runtime
-tokio = { version = "1.35", features = ["net", "io-util", "time", "rt", "macros"] }
+tokio = { version = "1.35", features = ["net", "io-util", "time", "rt", "rt-multi-thread", "macros"] }
 async-trait = "0.1.77"
 
 # Serialization & bytes
