@@ -11,9 +11,9 @@ categories.workspace = true
 description.workspace = true
 
 [dependencies]
-zkrust-core = { path = "../zkrust-core" }
-zkrust-transport = { path = "../zkrust-transport" }
-zkrust-types = { path = "../zkrust-types" }
+zkrust-core = { version = "0.1.0",path = "../zkrust-core" }
+zkrust-transport = {version = "0.1.0", path = "../zkrust-transport" }
+zkrust-types = { version = "0.1.0",path = "../zkrust-types" }
 
 tokio = { workspace = true }
 bytes = { workspace = true }
